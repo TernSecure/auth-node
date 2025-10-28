@@ -1,0 +1,22 @@
+{
+    "$schema": "https://ui.shadcn.com/schema.json",
+    "style": "new-york",
+    "rsc": false,
+    "tsx": true,
+    "tailwind": {
+      "config": "",
+      "css": "src/styles/globals.css",
+      "baseColor": "zinc",
+      "cssVariables": true,
+      "prefix": ""
+    },
+    "aliases": {
+      "components": "@workspace/@tern-secure/next-frontend/components",
+      "utils": "@workspace/@tern-secure/next-frontend/lib/utils",
+      "ui": "@workspace/@tern-secure/next-frontend/components/ui",
+      "lib": "@workspace/@tern-secure/next-frontend/lib",
+      "hooks": "@workspace/@tern-secure/next-frontend/hooks"
+    },
+    "iconLibrary": "lucide"
+  }
+  

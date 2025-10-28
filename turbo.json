@@ -1,21 +1,94 @@
 {
   "$schema": "https://turborepo.com/schema.json",
+  "remoteCache": {
+    "signature": true
+  },
   "ui": "tui",
+  "globalDependencies": [
+   ".github/.cache-version",
+    ".npmrc",
+    "eslint.config.mjs",
+    "package.json",
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml",
+    "tsconfig.json",
+    "tsconfig.*.json"
+  ],
+  "globalEnv": [
+    "NODE_ENV",
+    "FIREBASE_AUTH_EMULATOR_HOST",
+    "FIREBASE_PROJECT_ID",
+    "FIREBASE_CLIENT_EMAIL",
+    "FIREBASE_PRIVATE_KEY",
+    "FIREBASE_SERVER_API_KEY",
+    "GOOGLE_CLIENT_ID",
+    "KV_REST_API_URL",
+    "KV_REST_API_TOKEN",
+    "REDIS_KEY_PREFIX",
+    "TERN_UI_HOST",
+    "TERN_UI_PORT",
+    "TERNSECURE_API_URL",
+    "TERNSECURE_API_VERSION",
+    "TERN_ENCRYPTION_KEY"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "inputs": [
+        "*.d.ts",
+        "src/**",
+        "tsconfig.json",
+        "tsconfig.build.json",
+        "tsconfig.add.json",
+        "tsup.config.ts",
+        "!**/*.test.*",
+        "!**/test/**",
+        "!**/tests/**",
+        "!**/__tests__/**",
+        "!**/__snapshots__/**",
+        "!CHANGELOG.md",
+        "!coverage/**",
+        "!dist/**",
+        "!examples/**",
+        "!node_modules/**"
+      ],
+      "outputLogs": "new-only",
+      "outputs": ["*/package.json", "dist/**", "scripts/**"]
     },
-    "lint": {
-      "dependsOn": ["^lint"]
-    },
-    "check-types": {
-      "dependsOn": ["^check-types"]
+    "build:add": {
+      "dependsOn": ["^build"],
+      "inputs": ["tsconfig.add.json"],
+      "outputLogs": "new-only",
+      "outputs": ["dist/**/*.d.ts", "dist/**/*.d.ts.map"]
     },
     "dev": {
-      "cache": false,
-      "persistent": true
+      "cache": false
+    },
+    "clean": {
+      "cache": false
+    },
+    "lint": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "**/*.js",
+        "**/*.jsx",
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.json",
+        "**/*.md",
+        "**/*.mdx",
+        ".github/**",
+        "!**/test/**",
+        "!**/apps/**",
+        "!*/package.json",
+        "!**/__snapshots__/**",
+        "!CHANGELOG.md",
+        "!coverage/**",
+        "!dist/**",
+        "!examples/**",
+        "!node_modules/**"
+      ],
+      "outputs": []
     }
   }
 }

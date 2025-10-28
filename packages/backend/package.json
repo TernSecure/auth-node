@@ -1,0 +1,102 @@
+{
+  "name": "@tern-secure-node/backend",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TernSecure/auth-node.git",
+    "directory": "packages/backend"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "admin",
+    "auth",
+    "internal",
+    "jwt"
+  ],
+  "imports": {
+    "#crypto": {
+      "edge-light": "./dist/runtime/browser/crypto.mjs",
+      "worker": "./dist/runtime/browser/crypto.mjs",
+      "browser": "./dist/runtime/browser/crypto.mjs",
+      "node": {
+        "require": "./dist/runtime/node/crypto.js",
+        "import": "./dist/runtime/node/crypto.mjs"
+      },
+      "default": "./dist/runtime/browser/crypto.mjs"
+    }
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./admin": {
+      "import": {
+        "types": "./dist/admin/index.d.ts",
+        "default": "./dist/admin/index.mjs"
+      },
+      "require": {
+        "types": "./dist/admin/index.d.ts",
+        "default": "./dist/admin/index.js"
+      }
+    },
+    "./auth": {
+      "import": {
+        "types": "./dist/auth/index.d.ts",
+        "default": "./dist/auth/index.mjs"
+      },
+      "require": {
+        "types": "./dist/auth/index.d.ts",
+        "default": "./dist/auth/index.js"
+      }
+    },
+    "./jwt": {
+      "import": {
+        "types": "./dist/jwt/index.d.ts",
+        "default": "./dist/jwt/index.mjs"
+      },
+      "require": {
+        "types": "./dist/jwt/index.d.ts",
+        "default": "./dist/jwt/index.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "pnpm clean && tsup",
+    "build:add": "tsc -p tsconfig.add.json",
+    "dev": "tsup --watch",
+    "lint": "eslint src",
+    "check-types": "pnpm exec tsc --noEmit"
+  },
+  "dependencies": {
+    "@tern-secure/shared": "1.3.0-canary.v20251028151628",
+    "@tern-secure/types": "1.1.0-canary.v20251028151628",
+    "@upstash/redis": "^1.35.2",
+    "cookie": "1.0.2",
+    "jose": "^5.10.0",
+    "tslib": "2.4.1"
+  },
+  "devDependencies": {
+    "@types/js-cookie": "^3.0.6",
+    "firebase-admin": "^12.7.0",
+    "next": "16.0.0"
+  },
+  "peerDependencies": {
+    "firebase-admin": "^12.7.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

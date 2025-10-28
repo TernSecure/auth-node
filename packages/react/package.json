@@ -1,0 +1,66 @@
+{
+  "name": "@tern-secure-node/react",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TernSecure/auth-node.git",
+    "directory": "packages/react"
+  },
+  "bugs": {
+    "url": "https://github.com/TernSecure/auth-node/issues"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./index.css": "./dist/styles/globals.css"
+  },
+  "main": "./dist/index.js",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "pnpm clean && tsup",
+    "build:add": "tsc -p tsconfig.add.json",
+    "build:styles": "tailwindcss -i ./src/styles/globals.css -o ./dist/styles/globals.css --minify",
+    "dev": "tsup --watch",
+    "dev:styles": "tailwindcss -i ./src/styles/globals.css -o ./dist/index.css --watch",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "@tern-secure/auth": "1.1.0-canary.v20251028151628",
+    "@tern-secure/shared": "1.3.0-canary.v20251028151628",
+    "@tern-secure/types": "1.1.0-canary.v20251028151628",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.468.0",
+    "tailwind-merge": "^2.5.5",
+    "tailwindcss-animate": "^1.0.7",
+    "tslib": "2.4.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.6",
+    "@tailwindcss/postcss": "^4.1.6",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "autoprefixer": "^10.4.21",
+    "esbuild-plugin-postcss2": "^0.1.2",
+    "next": "16.0.0",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
