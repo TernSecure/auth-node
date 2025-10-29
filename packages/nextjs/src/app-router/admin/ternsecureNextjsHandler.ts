@@ -1,4 +1,4 @@
-import { createTernSecureRequest } from '@tern-secure/backend';
+import { createTernSecureRequest } from '@tern-secure-node/backend';
 
 import { createRequestProcessor } from './c-authenticateRequestProcessor';
 import { TENANT_ID } from './constants';

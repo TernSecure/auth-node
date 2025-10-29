@@ -4,7 +4,7 @@ import { GalleryVerticalEnd } from "lucide-react"
 
 import { LoginForm } from "@/components/signin-form"
 
-import { SignInProvider} from '@ternauth-node/nextjs';
+import { SignInProvider} from '@tern-secure-node/nextjs';
 
 export default function LoginPage() {
   return (

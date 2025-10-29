@@ -1,6 +1,6 @@
-import { clearSessionCookie } from '@tern-secure/backend/admin';
-import { ternDecodeJwtUnguarded } from '@tern-secure/backend/jwt';
 import type { CookieSubEndpoint } from '@tern-secure/types';
+import { clearSessionCookie } from '@tern-secure-node/backend/admin';
+import { ternDecodeJwtUnguarded } from '@tern-secure-node/backend/jwt';
 
 import { NextCookieStore } from '../../utils/NextCookieAdapter';
 import { type RequestProcessorContext } from './c-authenticateRequestProcessor';

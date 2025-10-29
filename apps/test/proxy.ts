@@ -1,7 +1,7 @@
 import {
   ternSecureProxy,
   createRouteMatcher,
-} from "@ternauth-node/nextjs/server";
+} from "@tern-secure-node/nextjs/server";
 
 const publicPaths = createRouteMatcher([
   "/sign-in",

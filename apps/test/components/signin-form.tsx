@@ -7,8 +7,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { useSignIn, useSignInContext, useTernSecure } from '@ternauth-node/nextjs';
-import type { SignInResponse, SocialProviderOptions, TernSecureUser} from '@ternauth-node/nextjs';
+import { useSignIn, useSignInContext, useTernSecure } from '@tern-secure-node/nextjs';
+import type { SignInResponse, SocialProviderOptions, TernSecureUser} from '@tern-secure-node/nextjs';
 
 export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) {
   const [email, setEmail] = useState('');

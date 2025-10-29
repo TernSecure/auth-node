@@ -1,6 +1,6 @@
 'use client';
 
-import type { TernSecureResources, TernSecureStateExtended } from '@tern-secure/types';
+import type { DecodedIdToken,TernSecureResources, TernSecureUser} from '@tern-secure/types';
 import React, { useEffect, useMemo, useState } from 'react';
 
 import { IsoTernSecureAuth } from '../lib/isoTernSecureAuth';
@@ -9,10 +9,17 @@ import type { IsoTernSecureAuthOptions } from '../types';
 import { AuthProviderCtx } from './AuthProvider';
 import { IsoTernSecureAuthCtx } from './IsomorphicTernSecureCtx';
 
+type TernSecureInitialState = {
+  userId: string | null;
+  user?: TernSecureUser | null;
+  token?: string | null;
+  sessionClaims?: DecodedIdToken | null;
+};
+
 type TernSecureCtxProviderProps = {
   children: React.ReactNode;
   instanceOptions: IsoTernSecureAuthOptions;
-  initialState: TernSecureStateExtended | undefined;
+  initialState: TernSecureInitialState | undefined;
 };
 
 export type TernSecureCtxProviderState = TernSecureResources;

@@ -6,7 +6,7 @@ import {
   clearSessionCookieServer,
   createSessionCookieServer,
   setNextServerSession,
-} from "@ternauth-node/nextjs/admin";
+} from "@tern-secure-node/nextjs/admin";
 
 export {
   clearNextSessionCookie,

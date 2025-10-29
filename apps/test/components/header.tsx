@@ -1,6 +1,6 @@
 'use client';
 
-import { useAuth } from '@ternauth-node/nextjs';
+import { useAuth } from '@tern-secure-node/nextjs';
 import { clearNextSessionCookie } from '@/app/actions';
 import { Button } from '@/components/ui/button';
 import {

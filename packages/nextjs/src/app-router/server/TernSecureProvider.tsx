@@ -1,4 +1,4 @@
-import type { TernSecureStateExtended } from '@tern-secure/types';
+import type { DecodedIdToken, TernSecureUser } from '@tern-secure/types';
 import type { ReactNode } from 'react';
 import React from 'react';
 
@@ -9,6 +9,12 @@ import type { TernSecureNextProps } from '../../types';
 import { allNextProviderPropsWithEnv } from '../../utils/allNextProviderProps';
 import { ClientTernSecureProvider } from '../client/TernSecureProvider';
 import { buildRequestLike } from './utils';
+
+type TernSecureInitialState = {
+  user?: TernSecureUser | null;
+  token?: string | null;
+  sessionClaims?: DecodedIdToken | null;
+};
 
 const getTernSecureState = React.cache(async function getTernSecureState() {
   const request = await buildRequestLike();
@@ -39,7 +45,7 @@ export async function TernSecureProvider(props: TernSecureNextProps) {
   if (browserCookiePersistence) {
     output = (
       <PromiseAuthProvider
-        authPromise={generateStatePromise() as unknown as Promise<TernSecureStateExtended>}
+        authPromise={generateStatePromise() as unknown as Promise<TernSecureInitialState>}
       >
         <ClientTernSecureProvider
           {...providerProps}

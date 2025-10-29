@@ -1,8 +1,7 @@
 import { createPathMatcher, type WithPathPatternWildcard } from '@tern-secure/shared/pathMatcher';
+import type { Autocomplete } from '@tern-secure/types';
 import type Link from 'next/link';
 import type { NextRequest } from 'next/server';
-
-import type { Autocomplete } from '../types';
 
 type NextTypedRoute<T = Parameters<typeof Link>['0']['href']> = T extends string ? T : never;
 type RouteMatcherWithNextTypedRoutes = Autocomplete<

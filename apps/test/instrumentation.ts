@@ -12,7 +12,7 @@ export async function register() {
       const urlObj = new URL(url);
 
       if (urlObj.hostname === "identitytoolkit.googleapis.com") {
-        const referer = process.env.NEXT_PUBLIC_APP_URL || "http://localhost";
+        const referer = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 
         const modifiedInit = {
           ...init,

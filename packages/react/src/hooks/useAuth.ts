@@ -13,6 +13,11 @@ import { useIsoTernSecureAuthCtx } from '../ctx/IsomorphicTernSecureCtx';
 import type { IsoTernSecureAuth } from '../lib/isoTernSecureAuth';
 import { useAssertWrappedByTernSecureAuthProvider } from './useAssertWrappedTernSecureProvider';
 
+/**
+ * @inline
+ */
+type UseAuthOptions = Record<string, any> | undefined | null;
+
 
 const handleSignOut = (instance: IsoTernSecureAuth) => {
   return async (options?: SignOutOptions) => {
@@ -33,14 +38,17 @@ const handleSignOut = (instance: IsoTernSecureAuth) => {
   };
 };
 
-export const useAuth = (): UseAuthReturn => {
+export const useAuth = (initialAuthStateOrOptions: UseAuthOptions = {}): UseAuthReturn => {
   useAssertWrappedByTernSecureAuthProvider('useAuth');
+
+  const { ...rest } = initialAuthStateOrOptions ?? {};
+  const initialAuthState = rest as any;
 
   const ctx = useAuthProviderCtx();
   let authCtx = ctx;
 
   if (authCtx.user === undefined) {
-    authCtx = { ...authCtx, user: null };
+    authCtx = initialAuthState != null ? initialAuthState : {};
   }
 
   const instance = useIsoTernSecureAuthCtx();
@@ -95,7 +103,7 @@ const resolvedAuthState = ({
     } as const;
   }
 
-  if (user && userId) {
+  if (user) {
     const isLoaded = true;
     const isValid = true;
     const isVerified = user.emailVerified || false;

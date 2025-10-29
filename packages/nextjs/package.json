@@ -81,9 +81,10 @@
   },
   "peerDependencies": {
     "firebase": "^12.0.0",
+    "firebase-admin": "^12.7.0",
     "next": "^16.0.0",
-    "react": "^19",
-    "react-dom": "^19"
+    "react": "catalog:peer-react",
+    "react-dom": "catalog:peer-react"
   },
   "engines": {
     "node": ">=20"

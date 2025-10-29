@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import { TernSecureProvider } from '@ternauth-node/nextjs';
+import { TernSecureProvider } from '@tern-secure-node/nextjs';
 import { Header} from '@/components/header';
 import './globals.css';
 

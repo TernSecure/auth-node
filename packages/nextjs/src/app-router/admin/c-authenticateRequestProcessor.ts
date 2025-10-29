@@ -1,5 +1,5 @@
-import type { TernSecureRequest } from '@tern-secure/backend';
-import { constants } from '@tern-secure/backend';
+import type { TernSecureRequest } from '@tern-secure-node/backend';
+import { constants } from '@tern-secure-node/backend';
 
 import type { AuthEndpoint, SessionSubEndpoint, TernSecureHandlerOptions } from './types';
 

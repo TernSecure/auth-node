@@ -1,4 +1,4 @@
-import { type TernSecureHandlerOptions } from '@tern-secure/nextjs/admin';
+import { type TernSecureHandlerOptions } from '@tern-secure-node/nextjs/admin';
 
 const authHandlerOptions: TernSecureHandlerOptions = {
   cors: {

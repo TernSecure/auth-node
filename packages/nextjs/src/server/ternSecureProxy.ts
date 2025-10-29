@@ -116,6 +116,7 @@ export const ternSecureProxy = ((
         options
       );
 
+
       const authObjectClient = requestStateClient.auth();
 
       const { redirectToSignIn } = createMiddlewareRedirects(ternSecureRequest);
@@ -181,9 +182,9 @@ const parseRequestAndEvent = (args: unknown[]) => {
     args[0] instanceof Request ? args[0] : undefined,
     args[0] instanceof Request ? args[1] : undefined,
   ] as [
-    NextMiddlewareRequestParam | undefined,
-    NextMiddlewareEvtParam | undefined,
-  ];
+      NextMiddlewareRequestParam | undefined,
+      NextMiddlewareEvtParam | undefined,
+    ];
 };
 
 const parseHandlerAndOptions = (args: unknown[]) => {
@@ -195,9 +196,9 @@ const parseHandlerAndOptions = (args: unknown[]) => {
         ? {}
         : args[0]) || {},
   ] as [
-    MiddlewareHandler | undefined,
-    MiddlewareOptions | MiddlewareOptionsCallback,
-  ];
+      MiddlewareHandler | undefined,
+      MiddlewareOptions | MiddlewareOptionsCallback,
+    ];
 };
 
 /**

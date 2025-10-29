@@ -22,6 +22,16 @@ export type MiddlewareCookiesOptions = {
 };
 
 
+export type AuthenticateFireRequestOptions = {
+  signInUrl?: string;
+  signUpUrl?: string;
+  apiClient?: ApiClient;
+  apiUrl?: string;
+  apiVersion?: string;
+  firebaseConfig?: TernSecureConfig
+} & VerifyTokenVOptions;
+
+
 export type AuthenticateRequestOptions = {
   tenantId?: string;
   signInUrl?: string;

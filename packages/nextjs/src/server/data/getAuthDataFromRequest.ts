@@ -1,4 +1,4 @@
-import type { TernSecureConfig, TernSecureUser } from "@tern-secure/types";
+import type { TernSecureConfig } from "@tern-secure/types";
 import { AuthStatus } from "@tern-secure-node/backend";
 import type { FirebaseServerApp } from "firebase/app";
 import { initializeServerApp } from "firebase/app";
@@ -7,9 +7,11 @@ import { getAuth } from "firebase/auth";
 
 import { getAuthKeyFromRequest } from "../../server/headers-utils";
 import type { RequestLike } from "../../server/types";
-import type { Aobj } from "../../types";
+import type { Aobj, SerializableTernSecureUser } from "../../types";
 import { FIREBASE_API_KEY, FIREBASE_APP_ID, FIREBASE_AUTH_DOMAIN, FIREBASE_MEASUREMENT_ID, FIREBASE_MESSAGING_SENDER_ID, FIREBASE_PROJECT_ID, FIREBASE_STORAGE_BUCKET } from "../constant";
 
+
+// Serializable auth object type
 /**
  * Auth objects moving through the server -> client boundary need to be serializable
  * as we need to ensure that they can be transferred via the network as pure strings.
@@ -54,13 +56,14 @@ export async function getAuthDataFromRequest(req: RequestLike): Promise<Aobj> {
 
   return {
     user: authObject,
+    userId: authObject ? authObject.uid : null,
   };
 }
 
 const authenticateRequest = async (
   token: string,
   request: Request
-): Promise<TernSecureUser | null> => {
+): Promise<SerializableTernSecureUser | null> => {
   try {
     const origin = new URL(request.url).origin;
 
@@ -94,8 +97,7 @@ const authenticateRequest = async (
     await auth.authStateReady();
 
     if (auth.currentUser) {
-      // Construct a plain object with TernSecureUser properties to avoid circular references
-      const userObj: TernSecureUser = {
+      const userObj: SerializableTernSecureUser = {
         uid: auth.currentUser.uid,
         email: auth.currentUser.email,
         emailVerified: auth.currentUser.emailVerified,
@@ -118,13 +120,6 @@ const authenticateRequest = async (
           photoURL: provider.photoURL,
           providerId: provider.providerId,
         })),
-        delete: auth.currentUser.delete.bind(auth.currentUser),
-        getIdToken: auth.currentUser.getIdToken.bind(auth.currentUser),
-        getIdTokenResult: auth.currentUser.getIdTokenResult.bind(
-          auth.currentUser
-        ),
-        reload: auth.currentUser.reload.bind(auth.currentUser),
-        toJSON: auth.currentUser.toJSON.bind(auth.currentUser),
       };
 
       return userObj;

@@ -1,10 +1,11 @@
 "use client";
 
-import type { TernSecureUser } from "@ternauth-node/nextjs/server";
+import type { TernSecureUser } from "@tern-secure-node/nextjs/server";
 import { useRouter } from "next/navigation";
 
 interface ProtectedPageClientProps {
-  user: TernSecureUser;
+  //eslint-disable-next-line @typescript-eslint/no-explicit-any
+  user: any;
 }
 
 export function ProtectedPageClient({

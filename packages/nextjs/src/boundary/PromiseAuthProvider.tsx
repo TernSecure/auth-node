@@ -1,19 +1,25 @@
 'use client';
 
-import type { TernSecureStateExtended } from '@tern-secure/types';
+import type { DecodedIdToken, TernSecureUser } from '@tern-secure/types';
 import { useAuth, useDeriveAuth } from '@tern-secure-node/react';
 import { useRouter } from 'next/compat/router';
 import React from 'react';
 
+type TernSecureInitialState = {
+  user?: TernSecureUser | null;
+  token?: string | null;
+  sessionClaims?: DecodedIdToken | null;
+};
+
 const PromiseAuthContext = React.createContext<
-  Promise<TernSecureStateExtended> | TernSecureStateExtended | null
+  Promise<TernSecureInitialState> | TernSecureInitialState | null
 >(null);
 
 export function PromiseAuthProvider({
   authPromise,
   children,
 }: {
-  authPromise: Promise<TernSecureStateExtended> | TernSecureStateExtended;
+  authPromise: Promise<TernSecureInitialState> | TernSecureInitialState;
   children: React.ReactNode;
 }) {
   return <PromiseAuthContext.Provider value={authPromise}>{children}</PromiseAuthContext.Provider>;
@@ -36,6 +42,6 @@ export function usePromiseAuth() {
 
     return useDeriveAuth({ ...resolvedData });
   } else {
-    return useAuth();
+    return useAuth({ ...resolvedData });
   }
 }

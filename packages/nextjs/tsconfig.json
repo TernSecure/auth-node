@@ -20,5 +20,5 @@
     "strict": true,
     "target": "ES2022"
   },
-  "include": ["src", "src/app-router/server/auth.ts", "src/app-router/server/utils.ts", "../backend"]
+  "include": ["src", "src/app-router/server/auth.ts", "src/app-router/server/utils.ts"]
 }

@@ -1,6 +1,6 @@
 import type { 
   IsoTernSecureAuthOptions,
-  TernSecureProviderProps} from "@tern-secure/react";
+  TernSecureProviderProps} from "@tern-secure-node/react";
 
 import type { NextProviderProcessedProps, TernSecureNextProps } from "../types";
 

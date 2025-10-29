@@ -7,7 +7,7 @@ import {
   createSessionCookie,
   SetNextServerSession,
   SetNextServerToken,
-} from '@tern-secure/backend/admin';
+} from '@tern-secure-node/backend/admin';
 
 import { NextCookieStore } from '../../utils/NextCookieAdapter';
 import { TENANT_ID } from './constants';

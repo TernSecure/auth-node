@@ -1,6 +1,6 @@
 'use client';
 
-import { useAuth } from '@ternauth-node/nextjs';
+import { useAuth } from '@tern-secure-node/nextjs';
 import { useRouter } from 'next/navigation';
 
 /**
@@ -14,14 +14,14 @@ import { useRouter } from 'next/navigation';
 export default function Home() {
   const router = useRouter();
   const auth = useAuth();
-  const { user, isLoaded, isAuthenticated, isValid, sessionClaims } = auth;
-
+  const { user, userId, isLoaded, isAuthenticated, isValid, sessionClaims } = auth;
   // on server userObject is undefined, if we dont check !user, there will hydration error
   //if (!user) return <div>Loading...</div>;
+  if (!userId) return <div>Loading...</div>;  //for ssr, better to use userId check
 
-  //if (!isLoaded) return <div>Loading...</div>;
+  if (!isLoaded) return <div>Loading...</div>;
 
-  //if (!isAuthenticated) return <div>User is not valid. Please sign in.</div>;
+  if (!isAuthenticated) return <div>User is not valid. Please sign in.</div>;
 
 
   const redirectToMoPage = () => {

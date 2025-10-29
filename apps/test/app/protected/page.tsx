@@ -1,4 +1,4 @@
-import { auth } from "@ternauth-node/nextjs/server";
+import { auth } from "@tern-secure-node/nextjs/server";
 import { ProtectedPageClient } from "./protectedClient";
 
 export const dynamic = "force-dynamic";

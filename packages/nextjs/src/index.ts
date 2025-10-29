@@ -4,8 +4,10 @@ export {
   useIdToken,
   useSession,
   useSignIn,
+  useSignUp,
   signIn,
   useSignInContext,
+  useSignUpContext,
   useTernSecure,
   SignInProvider,
   //SignIn,
@@ -18,6 +20,7 @@ export type {
   TernSecureUser,
   TernSecureUserData,
   SignInResponse,
+  SignUpResponse,
   SocialProviderOptions,
 } from '@tern-secure/types';
 

@@ -1,11 +1,16 @@
 import type {
+  DecodedIdToken,
   SignedInSession,
   TernSecureResources,
-  TernSecureStateExtended,
   TernSecureUser,
 } from '@tern-secure/types';
 
 
+type TernSecureInitialState = {
+  user?: TernSecureUser | null;
+  token?: string | null;
+  sessionClaims?: DecodedIdToken | null;
+};
 
 type DerivedAuthState = {
   userId: string | null | undefined;
@@ -17,16 +22,16 @@ type DerivedAuthState = {
 export const deriveAuthState = (
   ternSecureIsReady: boolean,
   authState: TernSecureResources,
-  initialState: TernSecureStateExtended | undefined,
+  initialState: TernSecureInitialState | undefined,
 ): DerivedAuthState => {
-  if (ternSecureIsReady && initialState) {
+  if (!authState.user && initialState) {
     return fromSsrInitialState(initialState);
   }
   return fromClientSideState(authState);
 };
 
-const fromSsrInitialState = (initialState: TernSecureStateExtended) => {
-  const userId = initialState.userId;
+const fromSsrInitialState = (initialState: TernSecureInitialState) => {
+  const userId = initialState.user ? initialState.user.uid : null;
   const token = initialState.token;
   const user = initialState.user as TernSecureUser;
 

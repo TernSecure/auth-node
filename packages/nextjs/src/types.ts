@@ -1,23 +1,7 @@
-import type { TernSecureProviderProps } from '@tern-secure/react';
-import type { TernSecureUser } from '@tern-secure/types';
-//import type { User } from 'firebase/auth';
+import type { TernSecureConfig,TernSecureUser } from '@tern-secure/types';
+import type { TernSecureProviderProps } from '@tern-secure-node/react';
 
 
-/**
- * TernSecure Firebase configuration interface
- * Extends Firebase's base configuration options
- */
-export interface TernSecureConfig {
-  apiKey: string;
-  authDomain: string;
-  projectId: string;
-  storageBucket: string;
-  messagingSenderId: string;
-  appId: string;
-  measurementId?: string;
-  appName?: string;
-  tenantId?: string;
-}
 
 export type AuthenticateRequestOptions = {
   signInUrl?: string;
@@ -43,19 +27,14 @@ export type TernSecureNextProps = TernSecureProviderProps & {
 };
 
 
-/**
- * Enables autocompletion for a union type, while keeping the ability to use any string
- * or type of `T`
- * @internal
- */
-export type Autocomplete<U extends T, T = string> = U | (T & Record<never, never>);
-
-
 export type NextProviderProcessedProps = Omit<TernSecureProviderProps, 'children'>;
 
 
+export type SerializableTernSecureUser = Omit<TernSecureUser, 'delete' | 'getIdToken' | 'getIdTokenResult' | 'reload' | 'toJSON'>;
+
 export type Aobj = {
-  user: TernSecureUser | null
+  user: SerializableTernSecureUser | null
+  userId: string | null
 }
 
 export { TernSecureUser }

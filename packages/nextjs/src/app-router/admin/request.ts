@@ -1,7 +1,7 @@
-import type { AuthenticateRequestOptions } from '@tern-secure/backend';
-import { constants } from '@tern-secure/backend';
-import { getAuth } from '@tern-secure/backend/auth';
 import { getCookieName, getCookiePrefix } from '@tern-secure/shared/cookie';
+import type { AuthenticateRequestOptions } from '@tern-secure-node/backend';
+import { constants } from '@tern-secure-node/backend';
+import { getAuth } from '@tern-secure-node/backend/auth';
 
 import { ternSecureBackendClient } from '../../server/ternsecureClient';
 import type { NextCookieStore } from '../../utils/NextCookieAdapter';
@@ -25,6 +25,7 @@ export async function refreshCookieWithIdToken(
   const backendClient = await ternSecureBackendClient();
 
   const authOptions: AuthenticateRequestOptions = {
+    tenantId: config?.tenantId || undefined,
     firebaseConfig: {
       apiKey: FIREBASE_API_KEY,
       authDomain: FIREBASE_AUTH_DOMAIN,
@@ -32,7 +33,6 @@ export async function refreshCookieWithIdToken(
       storageBucket: FIREBASE_STORAGE_BUCKET,
       messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
       appId: FIREBASE_APP_ID,
-      tenantId: config?.tenantId || undefined,
     },
     apiClient: backendClient,
   };
